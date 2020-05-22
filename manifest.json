@@ -10,7 +10,7 @@
     ],
     "browser_action": {
         "default_popup": "popup.html",
-        "default_title": "Carbon receipt",
+        "default_title": "Planty",
         "default_icon": "logo128.png"
     },
     "icons": { "16": "logo16.png",
