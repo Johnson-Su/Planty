@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         //webscrape the recipe
         //calculate carbon emissions for each ingredient
-        //when mouse gpoes
+        //when mouse gpoesh
     }
 
     // count eggs
