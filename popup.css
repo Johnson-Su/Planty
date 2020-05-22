@@ -88,9 +88,9 @@ body {
 
 .emissions{
   position: absolute;
-  width: 80px;
+  width: 95px;
   height: 56px;
-  left: calc(50% - 80px/2 + 88px);
+  left: calc(50% - 95px/2 + 79.5px);
   top: 185px;
 
   font-family: 'Courier Prime', monospace;
@@ -98,6 +98,7 @@ body {
   font-weight: bold;
   font-size: 13px;
   line-height: 15px;
+  text-align: right;
 
   color: #5B5B5B;
 }
@@ -170,6 +171,25 @@ body {
   color: #5B5B5B;
 }
 
+.countnum{
+  position: absolute;
+  width: 20px;
+  height: 14px;
+  left: calc(50% - 20px/2 + 121px);
+  top: 490px;
+
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  text-align: right;
+
+  color: #FF0000;
+}
+
 .subtotal{
   position: absolute;
   width: 116px;
@@ -184,6 +204,25 @@ body {
   line-height: 14px;
   /* identical to box height */
   color: #5B5B5B;
+}
+
+.subnum{
+  position: absolute;
+  width: 29px;
+  height: 14px;
+  left: calc(50% - 29px/2 + 118.5px);
+  top: 514px;
+
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  text-align: right;
+
+  color: #FF0000;
 }
 
 .savings{
@@ -202,6 +241,25 @@ body {
   color: #5B5B5B;
 }
 
+.savenum{
+  position: absolute;
+  width: 44px;
+  height: 14px;
+  left: calc(50% - 44px/2 + 111px);
+  top: 538px;
+
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  text-align: right;
+
+  color: #FF0000;
+}
+
 .line3{
   position: absolute;
   width: 253px;
@@ -209,14 +267,89 @@ body {
   left: calc(50% - 253px/2 + 0.5px);
   top: 552px;
 
-  font-family: Courier;
+  font-family: 'Courier Prime', monospace;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
   /* identical to box height */
-
   text-align: center;
-
   color: #5B5B5B;
+}
+
+.total{
+  position: absolute;
+  width: 94px;
+  height: 14px;
+  left: 24px;
+  top: 579px;
+
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  color: #5B5B5B;
+}
+
+.totalnum{
+  position: absolute;
+  width: 78px;
+  height: 14px;
+  left: 205px;
+  top: 579px;
+
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  text-align: right;
+
+  color: #FF0000;
+
+}
+
+.line4{
+  position: absolute;
+  width: 253px;
+  height: 14px;
+  left: calc(50% - 253px/2 + 0.5px);
+  top: 597px;
+
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  text-align: center;
+  color: #5B5B5B;
+}
+
+.didyouknow{
+  position: absolute;
+  width: 237px;
+  height: 45px;
+  left: calc(50% - 237px/2 + 0.5px);
+  top: 623px;
+
+  font-family: Courier;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  color: #5B5B5B;
+}
+
+.barcode{
+  position: absolute;
+  width: 207px;
+  height: 47px;
+  left: calc(50% - 207px/2 + 0.5px);
+  top: 683px;
 }
