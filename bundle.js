@@ -149,8 +149,7 @@
             var child = Object.keys(object).map(function(key) {
               return [String(key), object[key]];
             });
-            result.push(child);
-            console.log(result);
+            result.unshift(child);
             });
         }
       }, 5000);
