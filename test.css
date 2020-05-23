@@ -209,7 +209,7 @@ body {
   left: calc(50% - 253px/2 + 0.5px);
   top: 552px;
 
-  font-family: Courier;
+  font-family: 'Courier Prime', monospace;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
