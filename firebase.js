@@ -31,6 +31,30 @@
   chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
         function(tabs){
         //alert(tabs[0].url);
+        const my_url = tabs[0].url;
+        console.log(my_url);
+
+    const recipeScraper = require("recipe-scraper");
+    
+    // enter a supported recipe url as a parameter - returns a promise
+    async function someAsyncFunc() {
+      let recipe = await recipeScraper(my_url);
+    }
+    
+    // using Promise chaining
+    recipeScraper(my_url).then(recipe => {
+      console.log(recipe.name);
+      console.log(recipe.ingredients);
+      allIngredients = recipe.ingredients;
+
+    for(j = 0; j < allIngredients.length; j++){
+        console.log(allIngredients[j]);
+    }
+      }).catch(error => {
+        // do something with error
+      });
+
+
   });
 
 
@@ -83,3 +107,4 @@ is_it_high_carbon().then(bruv => {
 
 //turn firebase calls to functions
 //let name = await func()
+

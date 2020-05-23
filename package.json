@@ -1,0 +1,24 @@
+{
+  "name": "planty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "module.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amyh102/Planty.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amyh102/Planty/issues"
+  },
+  "homepage": "https://github.com/Amyh102/Planty#readme",
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "lodash": "^4.17.15",
+    "ws": "^7.3.0"
+  }
+}
