@@ -72,14 +72,27 @@ function is_it_high_carbon(){ //returns 1 if it is there
 }
 //is_it_high_carbon();
 //END OF HIGH CARBON
-
-async function bruh(){
-  let bruv = await is_it_high_carbon();
-}
-
-is_it_high_carbon().then(bruv => {
-  console.log(local_high_carbon_array[0]);
-}).catch(error=>{});
+//
+// async function bruh(){
+//   let bruv = await is_it_high_carbon();
+// }
+//
+// is_it_high_carbon().then(bruv => {
+//   console.log(local_high_carbon_array[0]);
+// }).catch(error=>{});
 
 //turn firebase calls to functions
 //let name = await func()
+
+
+window.addEventListener('load', (event) => {
+  var x;
+  for (x=0;x<high_carbon_array.length;x++){
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = high_carbon_array[x];
+    cell2.innerHTML = high_carbon_outputs[x];
+  }
+});
