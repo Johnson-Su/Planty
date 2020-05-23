@@ -36,12 +36,12 @@
         console.log(my_url);
 
     const recipeScraper = require("recipe-scraper");
-    
+
     // enter a supported recipe url as a parameter - returns a promise
     async function someAsyncFunc() {
       let recipe = await recipeScraper(my_url);
     }
-    
+
     // using Promise chaining
     recipeScraper(my_url).then(recipe => {
       console.log(recipe.name);
@@ -50,11 +50,11 @@
 
       var ingredient = {};
       ingredient[0] = allIngredients.length - 1;
-      firebase.database().ref(recipe.name).update(ingredient);     
+      firebase.database().ref(recipe.name).update(ingredient);
     for(j = 1; j < allIngredients.length + 1; j++){
       var ingredient = {};
       ingredient[j] = allIngredients[j];
-      firebase.database().ref(recipe.name).update(ingredient);     
+      firebase.database().ref(recipe.name).update(ingredient);
     }
       }).catch(error => {
         // do something with error
@@ -64,56 +64,61 @@
   });
 
 
+    firebase.database().ref('Recipe/1').on('value', function(snapshot) {
+      document.getElementById('address').innerHTML = snapshot.val();
+    });
 
-//START OF HIGH CARBON
-var high_carbon_array =["beef","butter","canned tuna","cheese","chicken","duck","egg","goat","honey","lamb","mayonnaise","milk","olive oil","pork","salmon","shrimp","turkey","yogurt"];
-var high_carbon_outputs=["27","3.3","6.1","13.5","6.9","5.4","4.8","64","1","39.2","1.95","3.2","4.5","12.1","11.9","12","10.9","2.2"];
-// returns array of high carbon ingredients
-var local_high_carbon_array =[];
-var local_high_carbon_outputs =[];
-function is_it_high_carbon(){ //returns 1 if it is there
-  local_high_carbon_array =[];
-  local_high_carbon_outputs =[];
-  //finds the info
-  firebase.database().ref('Homemade Chicken Soup/0').on('value', function(snapshot) {
-    var loopnum = snapshot.val();
-    //console.log(loopnum);
-    var j;
-    for(j=1;j<=loopnum;j++){;
-      firebase.database().ref('Homemade Chicken Soup/'+j).on('value', function(snapshot) {
-          var hmmm = snapshot.val();
-          //console.log(hmmm);
-          var i;
-          for(i=0;i<18;i++){
-            if(hmmm.indexOf(high_carbon_array[i])!=-1){
-              if(local_high_carbon_array.includes(high_carbon_array[i])!=true){
-                  local_high_carbon_array.push(high_carbon_array[i]);
-                  local_high_carbon_outputs.push(high_carbon_outputs[i]);
+  //START OF HIGH CARBON
+  var high_carbon_array =["beef","butter","canned tuna","cheese","chicken","duck","egg","goat","honey","lamb","mayonnaise","milk","olive oil","pork","salmon","shrimp","turkey","yogurt"];
+  var high_carbon_outputs=["27","3.3","6.1","13.5","6.9","5.4","4.8","64","1","39.2","1.95","3.2","4.5","12.1","11.9","12","10.9","2.2"];
+  // returns array of high carbon ingredients
+  var local_high_carbon_array =[];
+  var local_high_carbon_outputs =[];
+  function is_it_high_carbon(){ //returns 1 if it is there
+    local_high_carbon_array =[];
+    local_high_carbon_outputs =[];
+    //finds the info
+    firebase.database().ref('Recipe/0').on('value', function(snapshot) {
+      var loopnum = snapshot.val();
+      //console.log(loopnum);
+      var j;
+      for(j=2;j<=loopnum+1;j++){;
+        firebase.database().ref('Recipe/'+j).on('value', function(snapshot) {
+            var ingredient_name = snapshot.val();
+            //console.log(hmmm);
+            var i;
+            for(i=0;i<18;i++){
+              if(ingredient_name.indexOf(high_carbon_array[i])!=-1){
+                if(local_high_carbon_array.includes(high_carbon_array[i])!=true){
+                    local_high_carbon_array.push(high_carbon_array[i]);
+                    local_high_carbon_outputs.push(high_carbon_outputs[i]);
+                }
               }
             }
-          }
-          return 0;
-        });
+            return 0;
+          });
+      }
+    });
+    console.log(local_high_carbon_array);
+    console.log(local_high_carbon_outputs);
+    return 1;
+  }
+  //END OF HIGH CARBON ARRAY
+
+
+  window.addEventListener('load', (event) => {
+    is_it_high_carbon();
+    var x;
+    for (x=0;x<high_carbon_array.length;x++){
+      console.log(x);
+      var table = document.getElementById("myTable");
+      var row = table.insertRow(0);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      cell1.innerHTML = high_carbon_array[x];
+      cell2.innerHTML = high_carbon_outputs[x];
     }
   });
-  //console.log(local_high_carbon_array);
-  //console.log(local_high_carbon_outputs);
-  return 1;
-}
-//is_it_high_carbon();
-//END OF HIGH CARBON
-
-async function bruh(){
-  let bruv = await is_it_high_carbon();
-}
-
-is_it_high_carbon().then(bruv => {
-  console.log(local_high_carbon_array[0]);
-}).catch(error=>{});
-
-//turn firebase calls to functions
-//let name = await func()
-
 
 },{"recipe-scraper":478}],2:[function(require,module,exports){
 'use strict';
@@ -5507,7 +5512,7 @@ module.exports={
         "$data": {
             "type": "string",
             "anyOf": [
-                { "format": "relative-json-pointer" }, 
+                { "format": "relative-json-pointer" },
                 { "format": "json-pointer" }
             ]
         }
@@ -6773,7 +6778,7 @@ var crypto = require('crypto')
  * Valid keys.
  */
 
-var keys = 
+var keys =
   [ 'acl'
   , 'location'
   , 'logging'
@@ -6812,7 +6817,7 @@ module.exports.authorization = authorization
  * @param {Object} options
  * @return {String}
  * @api private
- */ 
+ */
 
 function hmacSha1 (options) {
   return crypto.createHmac('sha1', options.secret).update(options.message).digest('base64')
@@ -6821,8 +6826,8 @@ function hmacSha1 (options) {
 module.exports.hmacSha1 = hmacSha1
 
 /**
- * Create a base64 sha1 HMAC for `options`. 
- * 
+ * Create a base64 sha1 HMAC for `options`.
+ *
  * @param {Object} options
  * @return {String}
  * @api private
@@ -6835,10 +6840,10 @@ function sign (options) {
 module.exports.sign = sign
 
 /**
- * Create a base64 sha1 HMAC for `options`. 
+ * Create a base64 sha1 HMAC for `options`.
  *
  * Specifically to be used with S3 presigned URLs
- * 
+ *
  * @param {Object} options
  * @return {String}
  * @api private
@@ -6854,7 +6859,7 @@ module.exports.signQuery= signQuery
  * Return a string for sign() with the given `options`.
  *
  * Spec:
- * 
+ *
  *    <verb>\n
  *    <md5>\n
  *    <content-type>\n
@@ -6870,7 +6875,7 @@ module.exports.signQuery= signQuery
 function stringToSign (options) {
   var headers = options.amazonHeaders || ''
   if (headers) headers += '\n'
-  var r = 
+  var r =
     [ options.verb
     , options.md5
     , options.contentType
@@ -6886,7 +6891,7 @@ module.exports.stringToSign = stringToSign
  * for S3 presigned URLs
  *
  * Spec:
- * 
+ *
  *    <date>\n
  *    <resource>
  *
@@ -10752,7 +10757,7 @@ var attributeRules = {
 		if(len === 0){
 			return falseFunc;
 		}
-		
+
 		if(data.ignoreCase){
 			value = value.toLowerCase();
 
@@ -12231,7 +12236,7 @@ DomHandler.prototype.onerror = function(error){
 
 DomHandler.prototype.onclosetag = function(){
 	//if(this._tagStack.pop().name !== name) this._handleCallback(Error("Tagname didn't match!"));
-	
+
 	var elem = this._tagStack.pop();
 
 	if(this._options.withEndIndices && elem){
@@ -12776,7 +12781,7 @@ exports.prepend = function(elem, prev){
 	if(elem.prev){
 		elem.prev.next = prev;
 	}
-	
+
 	prev.parent = parent;
 	prev.prev = elem.prev;
 	prev.next = elem;
@@ -12960,11 +12965,11 @@ exports.ECKey = function(curve, key, isPublic)
 //      var y = key.slice(bytes+1);
 //      this.P = new ECPointFp(curve,
 //        curve.fromBigInteger(new BigInteger(x.toString("hex"), 16)),
-//        curve.fromBigInteger(new BigInteger(y.toString("hex"), 16)));      
+//        curve.fromBigInteger(new BigInteger(y.toString("hex"), 16)));
       this.P = curve.decodePointHex(key.toString("hex"));
     }else{
       if(key.length != bytes) return false;
-      priv = new BigInteger(key.toString("hex"), 16);      
+      priv = new BigInteger(key.toString("hex"), 16);
     }
   }else{
     var n1 = n.subtract(BigInteger.ONE);
@@ -12986,7 +12991,7 @@ exports.ECKey = function(curve, key, isPublic)
       if(!key || !key.P) return false;
       var S = key.P.multiply(priv);
       return Buffer.from(unstupid(S.getX().toBigInteger().toString(16),bytes*2),"hex");
-   }     
+   }
   }
 }
 
@@ -13428,7 +13433,7 @@ ECFieldElementFp.prototype.modReduce = function(x)
             {
                 u = u.multiply(this.getR());
             }
-            x = u.add(v); 
+            x = u.add(v);
         }
         while (x.compareTo(q) >= 0)
         {
@@ -14379,8 +14384,8 @@ var util = require('util')
   , net = require('net')
   , tls = require('tls')
   , AgentSSL = require('https').Agent
-  
-function getConnectionName(host, port) {  
+
+function getConnectionName(host, port) {
   var name = ''
   if (typeof host === 'string') {
     name = host + ':' + port
@@ -14389,7 +14394,7 @@ function getConnectionName(host, port) {
     name = host.host + ':' + host.port + ':' + (host.localAddress ? (host.localAddress + ':') : ':')
   }
   return name
-}    
+}
 
 function ForeverAgent(options) {
   var self = this
@@ -14407,7 +14412,7 @@ function ForeverAgent(options) {
     } else if (self.sockets[name].length < self.minSockets) {
       if (!self.freeSockets[name]) self.freeSockets[name] = []
       self.freeSockets[name].push(socket)
-      
+
       // if an error happens while we don't use the socket anyway, meh, throw the socket away
       var onIdleError = function() {
         socket.destroy()
@@ -14433,7 +14438,7 @@ ForeverAgent.prototype.createConnection = net.createConnection
 ForeverAgent.prototype.addRequestNoreuse = Agent.prototype.addRequest
 ForeverAgent.prototype.addRequest = function(req, host, port) {
   var name = getConnectionName(host, port)
-  
+
   if (typeof host !== 'string') {
     var options = host
     port = options.port
@@ -14462,7 +14467,7 @@ ForeverAgent.prototype.removeSocket = function(s, name, host, port) {
     delete this.sockets[name]
     delete this.requests[name]
   }
-  
+
   if (this.freeSockets[name]) {
     var index = this.freeSockets[name].indexOf(s)
     if (index !== -1) {
@@ -15653,7 +15658,7 @@ Parser.prototype.onclosetag = function(name) {
     if (this._lowerCaseTagNames) {
         name = name.toLowerCase();
     }
-    
+
     if (name in foreignContextElements || name in htmlIntegrationElements) {
         this._foreignContext.pop();
     }
@@ -15702,7 +15707,7 @@ Parser.prototype._closeCurrentTag = function() {
             this._cbs.onclosetag(name);
         }
         this._stack.pop();
-        
+
     }
 };
 
@@ -19689,8 +19694,8 @@ var validate = exports._validate = function(/*Any*/instance,/*Object*/schema,/*O
 			if(typeof instance != 'object' || instance instanceof Array){
 				errors.push({property:path,message:"an object is required"});
 			}
-			
-			for(var i in objTypeDef){ 
+
+			for(var i in objTypeDef){
 				if(objTypeDef.hasOwnProperty(i)){
 					var value = instance[i];
 					// skip _not_ specified properties
@@ -35678,7 +35683,7 @@ function compare (a, b) {
 }
 
 function generateBase (httpMethod, base_uri, params) {
-  // adapted from https://dev.twitter.com/docs/auth/oauth and 
+  // adapted from https://dev.twitter.com/docs/auth/oauth and
   // https://dev.twitter.com/docs/auth/creating-signature
 
   // Parameter normalization
@@ -82310,7 +82315,7 @@ function bytesToUuid(buf, offset) {
   var i = offset || 0;
   var bth = byteToHex;
   // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
-  return ([bth[buf[i++]], bth[buf[i++]], 
+  return ([bth[buf[i++]], bth[buf[i++]],
 	bth[buf[i++]], bth[buf[i++]], '-',
 	bth[buf[i++]], bth[buf[i++]], '-',
 	bth[buf[i++]], bth[buf[i++]], '-',
@@ -121280,7 +121285,7 @@ var IncomingMessage = exports.IncomingMessage = function (xhr, response, mode, f
 		self.url = response.url
 		self.statusCode = response.status
 		self.statusMessage = response.statusText
-		
+
 		response.headers.forEach(function (header, key){
 			self.headers[key.toLowerCase()] = header
 			self.rawHeaders.push(key, header)
@@ -122453,13 +122458,13 @@ Script.prototype.runInContext = function (context) {
     if (!(context instanceof Context)) {
         throw new TypeError("needs a 'context' argument.");
     }
-    
+
     var iframe = document.createElement('iframe');
     if (!iframe.style) iframe.style = {};
     iframe.style.display = 'none';
-    
+
     document.body.appendChild(iframe);
-    
+
     var win = iframe.contentWindow;
     var wEval = win.eval, wExecScript = win.execScript;
 
@@ -122468,7 +122473,7 @@ Script.prototype.runInContext = function (context) {
         wExecScript.call(win, 'null');
         wEval = win.eval;
     }
-    
+
     forEach(Object_keys(context), function (key) {
         win[key] = context[key];
     });
@@ -122477,11 +122482,11 @@ Script.prototype.runInContext = function (context) {
             win[key] = context[key];
         }
     });
-    
+
     var winKeys = Object_keys(win);
 
     var res = wEval.call(win, this.code);
-    
+
     forEach(Object_keys(win), function (key) {
         // Avoid copying circular objects like `top` and `window` by only
         // updating existing context properties or new properties in the `win`
@@ -122496,9 +122501,9 @@ Script.prototype.runInContext = function (context) {
             defineProp(context, key, win[key]);
         }
     });
-    
+
     document.body.removeChild(iframe);
-    
+
     return res;
 };
 

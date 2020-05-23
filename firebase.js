@@ -35,12 +35,12 @@
         console.log(my_url);
 
     const recipeScraper = require("recipe-scraper");
-    
+
     // enter a supported recipe url as a parameter - returns a promise
     async function someAsyncFunc() {
       let recipe = await recipeScraper(my_url);
     }
-    
+
     // using Promise chaining
     recipeScraper(my_url).then(recipe => {
       console.log(recipe.name);
@@ -92,20 +92,14 @@ function is_it_high_carbon(){ //returns 1 if it is there
         });
     }
   });
+  insertstuff();
   console.log(local_high_carbon_array);
   console.log(local_high_carbon_outputs);
   return 1;
 }
 //END OF HIGH CARBON ARRAY
 
-<<<<<<< HEAD
-is_it_high_carbon();
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 7bf91841712d471e515e99c6ab68fd8d249a37e1
-
-window.addEventListener('load', (event) => {
+function insertstuff(){
   var x;
   for (x=0;x<local_high_carbon_array.length;x++){
     console.log(x);
@@ -116,5 +110,9 @@ window.addEventListener('load', (event) => {
     cell1.innerHTML = local_high_carbon_array[x];
     cell2.innerHTML = local_high_carbon_outputs[x];
   }
+}
+
+//on load
+window.addEventListener('load', (event) => {
+  is_it_high_carbon();
 });
->>>>>>> 30f7817640646fa7fb6abb0392e1f851f2402102
