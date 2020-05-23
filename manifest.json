@@ -1,7 +1,13 @@
 {
     "name": "Planty",
     "version": "1.0",
+    "description": "carbon receipt",
     "manifest_version": 2,
+    "content_security_policy": "script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+    "background": {
+        "page": "popup.html",
+        "persistent": false
+    },
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
@@ -15,6 +21,7 @@
     },
     "icons": { "16": "logo16.png",
            "48": "logo48.png",
-          "128": "logo128.png" }
+          "128": "logo128.png" 
+    }
 
 }

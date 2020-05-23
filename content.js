@@ -5,5 +5,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     const matches = document.documentElement.innerHTML.match(re)
     sendResponse({count: matches.length})
 
-    
+chrome.runtime.sendMessage({comman: "fetch", data: {food: carbon_footprint}},(response) => {
+    findFood(response.data, food);
+})    
+
+
 })

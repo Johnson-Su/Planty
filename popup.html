@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.14.5/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,18 +19,7 @@
 </head>
 <body>
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-  <script>
-    var firebaseConfig = {
-      apiKey: "AIzaSyCUTFom3eBrXEwqTmSscXxKVtbaNtNv8YM",
-      authDomain: "planty-bb6f2.firebaseapp.com",
-      databaseURL: "https://planty-bb6f2.firebaseio.com",
-      projectId: "planty-bb6f2",
-      storageBucket: "planty-bb6f2.appspot.com",
-      messagingSenderId: "38856669442",
-      appId: "1:38856669442:web:807f81a0e0a7e892122a1b"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
+  <script src="firebase.js"></script>
 
   <div>
     <img src="planty.png" class="logo">
@@ -81,7 +79,7 @@
   </div>
 
   <div>
-    <p class="didyouknow">Did you know your changes saved __ turtles today!</p>
+    <p class="didyouknow">Did you know your changes  __ turtles today!</p>
     <p class="thankyou">Thank you for cooking with Planty!<br/><br/>Come Again Soon!</p>
     <p class="line5">_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</p>
     <img src="barcode.png" class="barcode">
