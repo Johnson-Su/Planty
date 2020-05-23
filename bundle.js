@@ -50,14 +50,16 @@
 
       var ingredient = {};
       ingredient[0] = allIngredients.length - 1;
-      firebase.database().ref(recipe.name).update(ingredient);
-    for(j = 1; j < allIngredients.length + 1; j++){
-      var ingredient = {};
-      ingredient[j] = allIngredients[j];
-      firebase.database().ref(recipe.name).update(ingredient);
-    }
+      firebase.database().ref("Recipe").update(ingredient);
+      ingredient[1] = recipe.name;
+      firebase.database().ref("Recipe").update(ingredient);
+      for(j = 2; j < allIngredients.length + 2; j++){
+        var ingredient = {};
+        ingredient[j] = allIngredients[j];
+        firebase.database().ref("Recipe").update(ingredient);
+      }
       }).catch(error => {
-        // do something with error
+      // do something with error
       });
 
 
@@ -73,11 +75,9 @@
 
   var high_carbon_array =[["beef",27],["butter",3.3],["canned tuna",6.1],["cheese",13.5],["chicken",6.9],["duck",5.4],["egg",4.8],["goat",64],["honey",1],["lamb",39.2],["mayonnaise",1.95],["milk",3.2],["olive oil",4.5],["pork",12.1],["salmon",11.9],["shrimp",12],["turkey",10.9],["yogurt",2.2]];
   var local_high_carbon_array =[];
-  var local_high_carbon_outputs =[];
 
   function is_it_high_carbon(){ //returns 1 if it is there
     local_high_carbon_array =[];
-    local_high_carbon_outputs =[];
     //finds the info
     firebase.database().ref('Recipe/0').on('value', function(snapshot) {
       var loopnum = snapshot.val();
@@ -91,8 +91,7 @@
           for(i=0;i<18;i++){
             if(ingredient_name.indexOf(high_carbon_array[i][0])!=-1){
               if(local_high_carbon_array.includes(high_carbon_array[i][0])!=true){
-                local_high_carbon_array.push(high_carbon_array[i][0]);
-                local_high_carbon_outputs.push(high_carbon_array[i][1]);
+                local_high_carbon_array.push(high_carbon_array[i]);
               }
             }
           }
@@ -101,7 +100,6 @@
       }
     });
   console.log(local_high_carbon_array);
-  console.log(local_high_carbon_outputs);
   return 1;
   }
 
@@ -115,10 +113,10 @@
         var row = table.insertRow(0);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
-        cell1.innerHTML = local_high_carbon_array[x];
-        cell2.innerHTML = local_high_carbon_outputs[x];
+        cell1.innerHTML = local_high_carbon_array[x][0];
+        cell2.innerHTML = local_high_carbon_array[x][1];
       }
-    }, 5000);
+    }, 1500);
   }
 
   window.addEventListener('load', (event) => {
@@ -131,11 +129,11 @@
     var i;
     var subtotal=0;
     for(i=0;i<local_high_carbon_outputs.length;i++){
-      subtotal=subtotal+local_high_carbon_outputs[i];
+      subtotal=subtotal+local_high_carbon_array[i][1];
       console.log(subtotal);
     }
     document.getElementById('subnum').innerHTML = subtotal.toFixed(1);
-    }, 2000);
+  }, 1500);
   }
 
   subtotalmaker();
