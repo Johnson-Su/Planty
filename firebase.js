@@ -33,32 +33,32 @@
         //alert(tabs[0].url);
   });
 
-var high_carbon_array =["beef","butter","canned tuna","cheese","chicken","duck","egg","goat","honey","lamb","mayonnaise","milk","olive oil","pork","salmon","shrimp","turkey","yogurt"];
 
-// function find_string(){
-//   firebase.database().ref('Homemade Chicken Soup/1').on('value', function(snapshot) {
-//       console.log(snapshot.val());
-//       return snapshot.val();
-//     });
-// }
-//
-// find_string();
+
+//START OF HIGH CARBON
+var high_carbon_array =["beef","butter","canned tuna","cheese","chicken","duck","egg","goat","honey","lamb","mayonnaise","milk","olive oil","pork","salmon","shrimp","turkey","yogurt"];
+var high_carbon_outputs=["27","3.3","6.1","13.5","6.9","5.4","4.8","64","1","39.2","1.95","3.2","4.5","12.1","11.9","12","10.9","2.2"];
+// returns array of high carbon ingredients
 var local_high_carbon_array =[];
+var local_high_carbon_outputs =[];
 function is_it_high_carbon(){ //returns 1 if it is there
+  local_high_carbon_array =[];
+  local_high_carbon_outputs =[];
   //finds the info
   firebase.database().ref('Homemade Chicken Soup/0').on('value', function(snapshot) {
     var loopnum = snapshot.val();
-    console.log(loopnum);
+    //console.log(loopnum);
     var j;
     for(j=1;j<=loopnum;j++){;
       firebase.database().ref('Homemade Chicken Soup/'+j).on('value', function(snapshot) {
           var hmmm = snapshot.val();
-          console.log(hmmm);
+          //console.log(hmmm);
           var i;
           for(i=0;i<18;i++){
             if(hmmm.indexOf(high_carbon_array[i])!=-1){
               if(local_high_carbon_array.includes(high_carbon_array[i])!=true){
-                local_high_carbon_array.push(high_carbon_array[i]);
+                  local_high_carbon_array.push(high_carbon_array[i]);
+                  local_high_carbon_outputs.push(high_carbon_outputs[i]);
               }
             }
           }
@@ -66,7 +66,20 @@ function is_it_high_carbon(){ //returns 1 if it is there
         });
     }
   });
-  console.log(local_high_carbon_array);
+  //console.log(local_high_carbon_array);
+  //console.log(local_high_carbon_outputs);
+  return 1;
+}
+//is_it_high_carbon();
+//END OF HIGH CARBON
+
+async function bruh(){
+  let bruv = await is_it_high_carbon();
 }
 
-is_it_high_carbon();
+is_it_high_carbon().then(bruv => {
+  console.log(local_high_carbon_array[0]);
+}).catch(error=>{});
+
+//turn firebase calls to functions
+//let name = await func()
