@@ -13,6 +13,7 @@
   firebase.initializeApp(firebaseConfig);
 
   console.log(firebase);
+  console.log("running")
 
   chrome.runtime.onMessage.addListener((msg, sender, resp) => {
       if(msg.commang == "fetch"){
@@ -26,3 +27,9 @@
     //we dont need to post
   }
   )
+
+  chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
+        function(tabs){
+            alert(tabs[0].url);
+        }
+        );
