@@ -75,6 +75,7 @@
 
   var high_carbon_array =[["beef",27],["butter",3.3],["canned tuna",6.1],["cheese",13.5],["chicken",6.9],["duck",5.4],["egg",4.8],["goat",64],["honey",1],["lamb",39.2],["mayonnaise",1.95],["milk",3.2],["olive oil",4.5],["pork",12.1],["salmon",11.9],["shrimp",12],["turkey",10.9],["yogurt",2.2]];
   var local_high_carbon_array =[];
+  var carbon_array=[];
 
   function is_it_high_carbon(){ //returns 1 if it is there
     local_high_carbon_array =[];
@@ -102,7 +103,6 @@
   console.log(local_high_carbon_array);
   return 1;
   }
-
 
   function addDelay(){
     setTimeout( function(){
@@ -137,6 +137,27 @@
   }
 
   subtotalmaker();
+
+//matching ingredients to firebase
+var result = [];
+function matchArray() {
+  for (var i=0;i<=local_high_carbon_array.length;i++){
+    console.log(local_high_carbon_array[i][0]);
+    firebase.database().ref('Ingredients/'+local_high_carbon_array[i][0]).on('value', function(snapshot) {
+      console.log(snapshot.val());
+      var object = snapshot.val();
+      var child = Object.keys(object).map(function(key) {
+        return [String(key), object[key]];
+      });
+      result.push(child);
+      console.log(result);
+      });
+  }
+}
+
+
+matchArray();
+  
 
 },{"recipe-scraper":478}],2:[function(require,module,exports){
 'use strict';
