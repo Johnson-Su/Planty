@@ -68,12 +68,17 @@
       document.getElementById('address').innerHTML = snapshot.val();
     });
 
+    firebase.database().ref('Recipe/0').on('value', function(snapshot) {
+      document.getElementById('countnum').innerHTML = snapshot.val();
+    });
+
   //START OF HIGH CARBON
   var high_carbon_array =["beef","butter","canned tuna","cheese","chicken","duck","egg","goat","honey","lamb","mayonnaise","milk","olive oil","pork","salmon","shrimp","turkey","yogurt"];
-  var high_carbon_outputs=["27","3.3","6.1","13.5","6.9","5.4","4.8","64","1","39.2","1.95","3.2","4.5","12.1","11.9","12","10.9","2.2"];
+  var high_carbon_outputs=[27,3.3,6.1,13.5,6.9,5.4,4.8,64,1,39.2,1.95,3.2,4.5,12.1,11.9,12,10.9,2.2];
   // returns array of high carbon ingredients
   var local_high_carbon_array =[];
   var local_high_carbon_outputs =[];
+
   function is_it_high_carbon(){ //returns 1 if it is there
     local_high_carbon_array =[];
     local_high_carbon_outputs =[];
@@ -119,6 +124,20 @@
       cell2.innerHTML = high_carbon_outputs[x];
     }
   });
+
+  function subtotalmaker(){
+    // Simulate a code delay
+    setTimeout( function(){
+      var i;
+      var subtotal=0;
+      for(i=0;i<local_high_carbon_outputs.length;i++){
+        subtotal=subtotal+local_high_carbon_outputs[i];
+        console.log(subtotal);
+      }
+      document.getElementById('subnum').innerHTML = subtotal.toFixed(1);
+    }, 1500);
+  }
+  subtotalmaker();
 
 },{"recipe-scraper":478}],2:[function(require,module,exports){
 'use strict';

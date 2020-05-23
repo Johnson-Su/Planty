@@ -57,62 +57,81 @@
 
   });
 
-  firebase.database().ref('Recipe/1').on('value', function(snapshot) {
-    document.getElementById('address').innerHTML = snapshot.val();
-  });
 
-//START OF HIGH CARBON
-var high_carbon_array =["beef","butter","canned tuna","cheese","chicken","duck","egg","goat","honey","lamb","mayonnaise","milk","olive oil","pork","salmon","shrimp","turkey","yogurt"];
-var high_carbon_outputs=["27","3.3","6.1","13.5","6.9","5.4","4.8","64","1","39.2","1.95","3.2","4.5","12.1","11.9","12","10.9","2.2"];
-// returns array of high carbon ingredients
-var local_high_carbon_array =[];
-var local_high_carbon_outputs =[];
-function is_it_high_carbon(){ //returns 1 if it is there
-  local_high_carbon_array =[];
-  local_high_carbon_outputs =[];
-  //finds the info
-  firebase.database().ref('Recipe/0').on('value', function(snapshot) {
-    var loopnum = snapshot.val();
-    //console.log(loopnum);
-    var j;
-    for(j=2;j<=loopnum+1;j++){;
-      firebase.database().ref('Recipe/'+j).on('value', function(snapshot) {
-          var ingredient_name = snapshot.val();
-          //console.log(hmmm);
-          var i;
-          for(i=0;i<18;i++){
-            if(ingredient_name.indexOf(high_carbon_array[i])!=-1){
-              if(local_high_carbon_array.includes(high_carbon_array[i])!=true){
-                  local_high_carbon_array.push(high_carbon_array[i]);
-                  local_high_carbon_outputs.push(high_carbon_outputs[i]);
+      firebase.database().ref('Recipe/1').on('value', function(snapshot) {
+        document.getElementById('address').innerHTML = snapshot.val();
+      });
+
+      firebase.database().ref('Recipe/0').on('value', function(snapshot) {
+        document.getElementById('countnum').innerHTML = snapshot.val();
+      });
+
+    //START OF HIGH CARBON
+    var high_carbon_array =["beef","butter","canned tuna","cheese","chicken","duck","egg","goat","honey","lamb","mayonnaise","milk","olive oil","pork","salmon","shrimp","turkey","yogurt"];
+    var high_carbon_outputs=[27,3.3,6.1,13.5,6.9,5.4,4.8,64,1,39.2,1.95,3.2,4.5,12.1,11.9,12,10.9,2.2];
+    // returns array of high carbon ingredients
+    var local_high_carbon_array =[];
+    var local_high_carbon_outputs =[];
+
+    function is_it_high_carbon(){ //returns 1 if it is there
+      local_high_carbon_array =[];
+      local_high_carbon_outputs =[];
+      //finds the info
+      firebase.database().ref('Recipe/0').on('value', function(snapshot) {
+        var loopnum = snapshot.val();
+        //console.log(loopnum);
+        var j;
+        for(j=2;j<=loopnum+1;j++){;
+          firebase.database().ref('Recipe/'+j).on('value', function(snapshot) {
+              var ingredient_name = snapshot.val();
+              //console.log(hmmm);
+              var i;
+              for(i=0;i<18;i++){
+                if(ingredient_name.indexOf(high_carbon_array[i])!=-1){
+                  if(local_high_carbon_array.includes(high_carbon_array[i])!=true){
+                      local_high_carbon_array.push(high_carbon_array[i]);
+                      local_high_carbon_outputs.push(high_carbon_outputs[i]);
+                  }
+                }
               }
-            }
-          }
-          return 0;
-        });
+              return 0;
+            });
+        }
+      });
+      console.log(local_high_carbon_array);
+      console.log(local_high_carbon_outputs);
+      return 1;
     }
-  });
-  insertstuff();
-  console.log(local_high_carbon_array);
-  console.log(local_high_carbon_outputs);
-  return 1;
-}
-//END OF HIGH CARBON ARRAY
+    //END OF HIGH CARBON ARRAY
 
-function insertstuff(){
-  var x;
-  for (x=0;x<local_high_carbon_array.length;x++){
-    console.log(x);
-    var table = document.getElementById("myTable");
-    var row = table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    cell1.innerHTML = local_high_carbon_array[x];
-    cell2.innerHTML = local_high_carbon_outputs[x];
-  }
-}
 
-//on load
-window.addEventListener('load', (event) => {
-  is_it_high_carbon();
-});
+    window.addEventListener('load', (event) => {
+      is_it_high_carbon();
+      var x;
+      for (x=0;x<high_carbon_array.length;x++){
+        console.log(x);
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = high_carbon_array[x];
+        cell2.innerHTML = high_carbon_outputs[x];
+      }
+    });
+
+    function subtotalmaker(){
+      // Simulate a code delay
+      setTimeout( function(){
+        var i;
+        var subtotal=0;
+        for(i=0;i<local_high_carbon_outputs.length;i++){
+          subtotal=subtotal+local_high_carbon_outputs[i];
+          console.log(subtotal);
+        }
+        document.getElementById('subnum').innerHTML = subtotal.toFixed(1);
+      }, 1500);
+    }
+    subtotalmaker();
+
+
+>>>>>>> 30f7817640646fa7fb6abb0392e1f851f2402102
