@@ -138,26 +138,25 @@
 
   subtotalmaker();
 
-//matching ingredients to firebase
-var result = [];
-function matchArray() {
-  for (var i=0;i<=local_high_carbon_array.length;i++){
-    console.log(local_high_carbon_array[i][0]);
-    firebase.database().ref('Ingredients/'+local_high_carbon_array[i][0]).on('value', function(snapshot) {
-      console.log(snapshot.val());
-      var object = snapshot.val();
-      var child = Object.keys(object).map(function(key) {
-        return [String(key), object[key]];
-      });
-      result.push(child);
-      console.log(result);
-      });
-  }
-}
+  var result = [];
+    function matchArray(){
+      setTimeout( function(){
+        for (var i=0;i<=local_high_carbon_array.length;i++){
+          console.log(local_high_carbon_array[i][0]);
+          firebase.database().ref('Ingredients/'+local_high_carbon_array[i][0]).on('value', function(snapshot) {
+            console.log(snapshot.val());
+            var object = snapshot.val();
+            var child = Object.keys(object).map(function(key) {
+              return [String(key), object[key]];
+            });
+            result.push(child);
+            console.log(result);
+            });
+        }
+      }, 5000);
+    }
+    matchArray();
 
-
-matchArray();
-  
 
 },{"recipe-scraper":478}],2:[function(require,module,exports){
 'use strict';
