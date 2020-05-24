@@ -110,10 +110,22 @@ body {
 }
 
 .red{
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14.3px;
+  line-height: 14px;
+  border: none;
   color: #FF0000;
 }
 
 .green{
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 14px;
+  border: none;
   color: #3B945E;
 }
 

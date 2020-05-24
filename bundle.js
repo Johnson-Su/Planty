@@ -102,9 +102,8 @@
           var row = table.insertRow(-1);
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
-          cell1.innerHTML = local_high_carbon_array[x][0];
+          cell1.innerHTML = '<button class="red" type="button">' + local_high_carbon_array[x][0] + '</button>';
           cell2.innerHTML = local_high_carbon_array[x][1];
-          cell1.className = 'red';
           cell2.className = 'red';
         }
       }, 1500);
@@ -156,9 +155,8 @@
             var row = table.insertRow(num+1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
-            cell1.innerHTML = "*" + result[num][x][0];
+            cell1.innerHTML = '<button class="green" type="button">' + "*" + result[num][x][0] + '</button>'; 
             cell2.innerHTML = "-" + (local_high_carbon_array[num][1]-result[num][x][1]).toFixed(1);
-            cell1.className = 'green';
             cell2.className = 'green';
           }
         }, 2700);
