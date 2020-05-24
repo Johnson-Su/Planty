@@ -99,7 +99,7 @@
         for (x=0;x<local_high_carbon_array.length;x++){
           console.log(x);
           var table = document.getElementById("myTable");
-          var row = table.insertRow(0);
+          var row = table.insertRow(-1);
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
           cell1.innerHTML = local_high_carbon_array[x][0];
@@ -121,8 +121,6 @@
       document.getElementById('subnum').innerHTML = subtotal.toFixed(1);
     }, 1500);
     }
-
-    subtotalmaker();
 
     var result = [];
       function matchArray(){
@@ -155,7 +153,7 @@
           //go through alternatives to certain thing
           for(x=1;x<result[num].length;x++){
             var table = document.getElementById("myTable");
-            var row = table.insertRow(num);
+            var row = table.insertRow(num+1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             cell1.innerHTML = "*" + result[num][x][0];
@@ -163,11 +161,12 @@
             cell1.className = 'green';
             cell2.className = 'green';
           }
-        }, 4000);
+        }, 2700);
       }
 
       window.addEventListener('load', (event) => {
         is_it_high_carbon();
+        subtotalmaker();
         addDelay();
         matchArray();
         showarray();
