@@ -15,19 +15,7 @@
 
   console.log("firebase");
   console.log("running");
-
-  chrome.runtime.onMessage.addListener((msg, sender, resp) => {
-      if(msg.commang == "fetch"){
-          var doman = msg.data.domain;
-          var enc_domain = btoa(domain);
-          firebase.database().ref('/domain/' + enc_domain).once('value').then(function(snapshot){resp({type: "result", status: "success", data:snapshot.val(), request: msg});
-          });
-
-      }
-
     //we dont need to post
-  }
-  )
 
   chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
         function(tabs){
@@ -149,8 +137,7 @@
             var child = Object.keys(object).map(function(key) {
               return [String(key), object[key]];
             });
-            result.push(child);
-            console.log(result);
+            result.unshift(child);
             });
         }
       }, 5000);
