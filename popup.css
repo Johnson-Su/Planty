@@ -131,11 +131,11 @@ body {
 }
 
 .green:hover {
-  background-color: #F5DF16;
+  background-color: #edfce1;
 }
 
-.green:focus {
-  background-color: #F5DF16;
+.active {
+  background-color: #edfce1;
 }
 
 .color {
@@ -285,7 +285,7 @@ body {
   font-size: 12px;
   line-height: 14px;
   text-align: right;
-  color: #FF0000;
+  color: #3B945E;
 }
 
 .line3{
@@ -332,7 +332,7 @@ body {
   font-size: 12px;
   line-height: 14px;
   text-align: right;
-  color: #FF0000;
+  color: #5B5B5B;
 }
 
 .line4{
