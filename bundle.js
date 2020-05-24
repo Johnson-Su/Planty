@@ -121,7 +121,7 @@
         }
       }, 1500);
     }
-    
+
     function subtotalmaker(){
       setTimeout( function(){
       var i;
@@ -173,14 +173,14 @@
             console.log(num+extras);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
-            cell1.innerHTML = '<button class="green" type="button">' + "*" + result[num][x][0] + '</button>'; 
+            cell1.innerHTML = '<button class="green" type="button">' + "*" + result[num][x][0] + '</button>';
             cell2.innerHTML = "-" + (local_high_carbon_array[num][1]-result[num][x][1]).toFixed(1);
             cell2.className = 'green';
             cell1.id = result[num][x][0];
             document.getElementById(cell1.id).addEventListener("click", function() {
-              var current = document.getElementsByClassName("active");
+              var current = document.getElementsByClassName("color");
               // Add the active class to the current/clicked button
-              this.className += " active";
+              this.className += "color";
             }, false);
             extras = extras + 1;
             console.log(extras);

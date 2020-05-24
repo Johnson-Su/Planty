@@ -130,11 +130,16 @@ body {
   background-color: Transparent;
 }
 
-.active, .green:hover {
-  position: absolute;
+.green:hover {
   background-color: #F5DF16;
-  color: #000000;
-  width: 80px;
+}
+
+.green:focus {
+  background-color: #F5DF16;
+}
+
+.color {
+  color: #5B5B5B;
 }
 
 .table{
