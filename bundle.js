@@ -62,7 +62,7 @@
       document.getElementById('countnum').innerHTML = snapshot.val();
     });
 
-    var high_carbon_array =[["beef",27],["butter",3.3],["canned tuna",6.1],["cheese",13.5],["chicken",6.9],["duck",5.4],["egg",4.8],["goat",64],["honey",1],["lamb",39.2],["mayonnaise",1.95],["milk",3.2],["olive oil",4.5],["pork",12.1],["salmon",11.9],["shrimp",12],["turkey",10.9],["yogurt",2.2]];
+    var high_carbon_array =[["beef",27],["butter",3.3],["canned tuna",6.1],["cheese",13.5],["chicken",6.9],["duck",5.4],["eggs",4.8],["goat",64],["honey",1],["lamb",39.2],["mayonnaise",1.95],["milk",3.2],["olive oil",4.5],["pork",12.1],["salmon",11.9],["shrimp",12],["turkey",10.9],["yogurt",2.2]];
     var local_high_carbon_array =[];
     var carbon_array=[];
 
@@ -160,6 +160,8 @@
         return result;
       }
 
+      var extras = 1;
+
       function showalt(num, result){
         // setTimeout( function(){
           var x;
@@ -167,12 +169,15 @@
           //go through alternatives to certain thing
           for(x=1;x<result[num].length;x++){
             var table = document.getElementById("myTable");
-            var row = table.insertRow(num+1);
+            var row = table.insertRow(num+extras);
+            console.log(num+extras);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             cell1.innerHTML = '<button class="green" type="button">' + "*" + result[num][x][0] + '</button>'; 
             cell2.innerHTML = "-" + (local_high_carbon_array[num][1]-result[num][x][1]).toFixed(1);
             cell2.className = 'green';
+            extras = extras + 1;
+            console.log(extras);
           }
         // }, 2700);
       }
@@ -186,7 +191,15 @@
         // showalt(0);
       });
 
-
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('button').addEventListener('click', function() {
+          var num = result.length;
+          for (i=0;i<num;i++){
+            console.log(i);
+            showalt(i, result);
+          }
+        });
+    });
 
 },{"recipe-scraper":478}],2:[function(require,module,exports){
 'use strict';
