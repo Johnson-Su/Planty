@@ -53,96 +53,124 @@
 
   });
 
-  firebase.database().ref('Recipe/1').on('value', function(snapshot) {
-    document.getElementById('address').innerHTML = snapshot.val();
-  });
 
-  firebase.database().ref('Recipe/0').on('value', function(snapshot) {
-    document.getElementById('countnum').innerHTML = snapshot.val();
-  });
+    firebase.database().ref('Recipe/1').on('value', function(snapshot) {
+      document.getElementById('address').innerHTML = snapshot.val();
+    });
 
-  var high_carbon_array =[["beef",27],["butter",3.3],["canned tuna",6.1],["cheese",13.5],["chicken",6.9],["duck",5.4],["egg",4.8],["goat",64],["honey",1],["lamb",39.2],["mayonnaise",1.95],["milk",3.2],["olive oil",4.5],["pork",12.1],["salmon",11.9],["shrimp",12],["turkey",10.9],["yogurt",2.2]];
-  var local_high_carbon_array =[];
-  var carbon_array=[];
-
-  function is_it_high_carbon(){ //returns 1 if it is there
-    local_high_carbon_array =[];
-    //finds the info
     firebase.database().ref('Recipe/0').on('value', function(snapshot) {
-      var loopnum = snapshot.val();
-      //console.log(loopnum);
-      var j;
-      for(j=2;j<=loopnum+1;j++){
-        firebase.database().ref('Recipe/'+j).on('value', function(snapshot) {
-          var ingredient_name = snapshot.val();
-          //console.log(hmmm);
-          var i;
-          for(i=0;i<18;i++){
-            if(ingredient_name.indexOf(high_carbon_array[i][0])!=-1){
-              if(local_high_carbon_array.includes(high_carbon_array[i][0])!=true){
-                local_high_carbon_array.push(high_carbon_array[i]);
+      document.getElementById('countnum').innerHTML = snapshot.val();
+    });
+
+    var high_carbon_array =[["beef",27],["butter",3.3],["canned tuna",6.1],["cheese",13.5],["chicken",6.9],["duck",5.4],["egg",4.8],["goat",64],["honey",1],["lamb",39.2],["mayonnaise",1.95],["milk",3.2],["olive oil",4.5],["pork",12.1],["salmon",11.9],["shrimp",12],["turkey",10.9],["yogurt",2.2]];
+    var local_high_carbon_array =[];
+    var carbon_array=[];
+
+    function is_it_high_carbon(){ //returns 1 if it is there
+      local_high_carbon_array =[];
+      //finds the info
+      firebase.database().ref('Recipe/0').on('value', function(snapshot) {
+        var loopnum = snapshot.val();
+        //console.log(loopnum);
+        var j;
+        for(j=2;j<=loopnum+1;j++){
+          firebase.database().ref('Recipe/'+j).on('value', function(snapshot) {
+            var ingredient_name = snapshot.val();
+            //console.log(hmmm);
+            var i;
+            for(i=0;i<18;i++){
+              if(ingredient_name.indexOf(high_carbon_array[i][0])!=-1){
+                if(local_high_carbon_array.includes(high_carbon_array[i][0])!=true){
+                  local_high_carbon_array.push(high_carbon_array[i]);
+                }
               }
             }
-          }
-          return 0;
-        });
-      }
-    });
-  console.log(local_high_carbon_array);
-  return 1;
-  }
-
-  function addDelay(){
-    setTimeout( function(){
-      var x;
-      for (x=0;x<local_high_carbon_array.length;x++){
-        console.log(x);
-        var table = document.getElementById("myTable");
-        var row = table.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        cell1.innerHTML = local_high_carbon_array[x][0];
-        cell2.innerHTML = local_high_carbon_array[x][1];
-      }
-    }, 1500);
-  }
-
-  window.addEventListener('load', (event) => {
-    is_it_high_carbon();
-    addDelay();
-  });
-
-  function subtotalmaker(){
-    setTimeout( function(){
-    var i;
-    var subtotal=0;
-    for(i=0;i<local_high_carbon_array.length;i++){
-      subtotal=subtotal+local_high_carbon_array[i][1];
-      console.log(subtotal);
-    }
-    document.getElementById('subnum').innerHTML = subtotal.toFixed(1);
-  }, 1500);
-  }
-
-  subtotalmaker();
-
-  var result = [];
-    function matchArray(){
-      setTimeout( function(){
-        for (var i=0;i<=local_high_carbon_array.length;i++){
-          console.log(local_high_carbon_array[i][0]);
-          firebase.database().ref('Ingredients/'+local_high_carbon_array[i][0]).on('value', function(snapshot) {
-            console.log(snapshot.val());
-            var object = snapshot.val();
-            var child = Object.keys(object).map(function(key) {
-              return [String(key), object[key]];
-            });
-            result.unshift(child);
-            });
+            return 0;
+          });
         }
-      }, 5000);
+      });
+    console.log(local_high_carbon_array);
+    return 1;
     }
-    matchArray();
+
+    function addDelay(){
+      setTimeout( function(){
+        var x;
+        for (x=0;x<local_high_carbon_array.length;x++){
+          console.log(x);
+          var table = document.getElementById("myTable");
+          var row = table.insertRow(0);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          cell1.innerHTML = local_high_carbon_array[x][0];
+          cell2.innerHTML = local_high_carbon_array[x][1];
+        }
+      }, 1500);
+    }
+
+    function subtotalmaker(){
+      setTimeout( function(){
+      var i;
+      var subtotal=0;
+      for(i=0;i<local_high_carbon_array.length;i++){
+        subtotal=subtotal+local_high_carbon_array[i][1];
+        console.log(subtotal);
+      }
+      document.getElementById('subnum').innerHTML = subtotal.toFixed(1);
+    }, 1500);
+    }
+
+    subtotalmaker();
+
+    var result = [];
+      function matchArray(){
+        setTimeout( function(){
+          for (var i=0;i<=local_high_carbon_array.length;i++){
+            console.log(local_high_carbon_array[i][0]);
+            firebase.database().ref('Ingredients/'+local_high_carbon_array[i][0]).on('value', function(snapshot) {
+              //console.log(snapshot.val());
+              var object = snapshot.val();
+              var child = Object.keys(object).map(function(key) {
+                return [String(key), object[key]];
+              });
+              result.push(child);
+              });
+          }
+        }, 2000);
+      }
+
+
+      function showarray(){
+        setTimeout( function(){
+          console.log(result);
+        }, 2500);
+      }
+
+      function showalt(num){
+        setTimeout( function(){
+          var x;
+          console.log("AHHHHHHHH");
+          //go through alternatives to certain thing
+          for(x=1;x<result[num].length;x++){
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(num);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = result[num][x][0];
+            cell2.innerHTML = result[num][x][1];
+          }
+        }, 5000);
+      }
+
+      window.addEventListener('load', (event) => {
+        is_it_high_carbon();
+        addDelay();
+        matchArray();
+        showarray();
+        showalt(2);
+      });
+
+
 
 },{"recipe-scraper":478}],2:[function(require,module,exports){
 'use strict';
