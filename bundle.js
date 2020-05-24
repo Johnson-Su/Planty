@@ -152,6 +152,7 @@
               savings = savings + parseFloat(document.getElementById("c" + this.id).innerHTML);
               document.getElementById('savenum').innerHTML = savings.toFixed(1);
               document.getElementById('totalnum').innerHTML = (parseFloat(document.getElementById('totalnum').innerHTML) + savings).toFixed(1);
+              document.getElementById('trees').innerHTML = (parseFloat(document.getElementById('savenum').innerHTML) * (-1) / 21).toFixed(1);
               // Add the active class to the current/clicked button
               this.classList.add("active");
             }, false);
