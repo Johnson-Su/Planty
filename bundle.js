@@ -103,12 +103,25 @@
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
           cell1.innerHTML = '<button class="red" type="button">' + local_high_carbon_array[x][0] + '</button>';
+          cell1.id = String(x);
+          console.log("id: " + cell1.id);
+          document.getElementById(String(x)).addEventListener("click", function(){
+            showarray(x).then(result => {
+              console.log("IT EXISTS: " +result)
+              showalt(x, result);
+            })
+          });
+
+          // function myFunction(){
+          //   console.log('clicked: ' );
+          // }
+
           cell2.innerHTML = local_high_carbon_array[x][1];
           cell2.className = 'red';
         }
       }, 1500);
     }
-
+    
     function subtotalmaker(){
       setTimeout( function(){
       var i;
@@ -139,16 +152,18 @@
       }
 
 
-      function showarray(){
+      async function showarray(num){
         setTimeout( function(){
-          console.log(result);
+          console.log("alternatives are: " + result);
+          // showalt(num);
         }, 2500);
+        return result;
       }
 
-      function showalt(num){
-        setTimeout( function(){
+      function showalt(num, result){
+        // setTimeout( function(){
           var x;
-          console.log("AHHHHHHHH");
+          console.log("IN SHOW ALT: " + result);
           //go through alternatives to certain thing
           for(x=1;x<result[num].length;x++){
             var table = document.getElementById("myTable");
@@ -159,7 +174,7 @@
             cell2.innerHTML = "-" + (local_high_carbon_array[num][1]-result[num][x][1]).toFixed(1);
             cell2.className = 'green';
           }
-        }, 2700);
+        // }, 2700);
       }
 
       window.addEventListener('load', (event) => {
@@ -168,7 +183,7 @@
         addDelay();
         matchArray();
         showarray();
-        showalt(0);
+        // showalt(0);
       });
 
 

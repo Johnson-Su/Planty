@@ -3,7 +3,7 @@
     "version": "1.0",
     "description": "carbon receipt",
     "manifest_version": 2,
-    "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+    "content_security_policy": "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
     "background": {
         "page": "popup.html",
         "persistent": false
