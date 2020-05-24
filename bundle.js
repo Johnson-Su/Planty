@@ -176,6 +176,12 @@
             cell1.innerHTML = '<button class="green" type="button">' + "*" + result[num][x][0] + '</button>'; 
             cell2.innerHTML = "-" + (local_high_carbon_array[num][1]-result[num][x][1]).toFixed(1);
             cell2.className = 'green';
+            cell1.id = result[num][x][0];
+            document.getElementById(cell1.id).addEventListener("click", function() {
+              var current = document.getElementsByClassName("active");
+              // Add the active class to the current/clicked button
+              this.className += " active";
+            }, false);
             extras = extras + 1;
             console.log(extras);
           }
@@ -188,6 +194,7 @@
         addDelay();
         matchArray();
         showarray();
+        highlight();
         // showalt(0);
       });
 
