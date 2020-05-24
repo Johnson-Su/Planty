@@ -68,7 +68,7 @@ body {
     width: 86px;
     height: 45px;
     left: calc(50% - 86px/2 - 86px);
-    top: 200px;
+    top: 195px;
 
     font-family: 'Courier Prime', monospace;
     font-style: normal;
@@ -131,11 +131,11 @@ body {
 }
 
 .green:hover {
-  background-color: #edfce1;
+  background-color: #e8ffd4;
 }
 
 .active {
-  background-color: #edfce1;
+  background-color: #e8ffd4;
 }
 
 .color {
@@ -169,7 +169,7 @@ body {
   width: 253px;
   height: 32px;
   left: calc(50% - 253px/2 + 2.5px);
-  top: 425px;
+  top: 429px;
 
   font-family: 'Courier Prime', monospace;
   font-style: normal;
@@ -412,7 +412,7 @@ body {
   width: 253px;
   height: 14px;
   left: calc(50% - 253px/2 + 0.5px);
-  top: 406px;
+  top: 418px;
   border: none;
 
   font-family: 'Courier Prime', monospace;
