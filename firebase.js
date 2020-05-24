@@ -109,6 +109,8 @@
         var cell2 = row.insertCell(1);
         cell1.innerHTML = local_high_carbon_array[x][0];
         cell2.innerHTML = local_high_carbon_array[x][1];
+        cell1.className = 'red';
+        cell2.className = 'red';
       }
     }, 1500);
   }
@@ -162,6 +164,8 @@
           var cell2 = row.insertCell(1);
           cell1.innerHTML = results[num][x][0];
           cell2.innerHTML = results[num][x][1];
+          cell1.className = 'green';
+          cell2.className = 'green';
         }
       }, 5000);
     }

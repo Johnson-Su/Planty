@@ -107,7 +107,14 @@ body {
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
+}
+
+.red{
   color: #FF0000;
+}
+
+.green{
+  color: #3B945E;
 }
 
 .table{
@@ -389,5 +396,4 @@ body {
   line-height: 14px;
   text-align: center;
   color: #FF0000;
-
 }
