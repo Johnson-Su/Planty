@@ -128,7 +128,7 @@
     setTimeout( function(){
     var i;
     var subtotal=0;
-    for(i=0;i<local_high_carbon_outputs.length;i++){
+    for(i=0;i<local_high_carbon_array.length;i++){
       subtotal=subtotal+local_high_carbon_array[i][1];
       console.log(subtotal);
     }
@@ -156,7 +156,6 @@
       }, 5000);
     }
     matchArray();
-
 
 },{"recipe-scraper":478}],2:[function(require,module,exports){
 'use strict';

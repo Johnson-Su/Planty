@@ -10,7 +10,7 @@ body {
     width: 56px;
     height: 62px;
     left: calc(50% - 56px/2);
-    top: 30px;
+    top: 20px;
   }
 
   .name{
@@ -18,7 +18,7 @@ body {
     width: 159px;
     height: 30px;
     left: calc(50% - 159px/2 + 0.5px);
-    top: 89px;
+    top: 79px;
 
     font-family: 'Courier Prime', monospace;
     font-style: normal;
@@ -51,12 +51,12 @@ body {
   width: 202px;
   height: 28px;
   left: calc(50% - 202px/2);
-  top: 130px;
+  top: 120px;
 
   font-family: 'Courier Prime', monospace;
   font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
+  font-weight: bold;
+  font-size: 13px;
   line-height: 14px;
   text-align: center;
   letter-spacing: 0.25em;
@@ -97,7 +97,7 @@ body {
 .container{
   overflow-y: auto;
   overflow-x: hidden;
-  max-height:156px;
+  max-height:142px;
   width: 264px;
   position: absolute;
   left: calc(50% - 264px/2 + 5px);
@@ -340,7 +340,7 @@ body {
   width: 228px;
   height: 48px;
   left: calc(50% - 228px/2);
-  top: 660px;
+  top: 665px;
 
   font-family: Courier;
   font-style: normal;
@@ -373,4 +373,21 @@ body {
   height: 47px;
   left: calc(50% - 207px/2 + 0.5px);
   top: 770px;
+}
+
+.altervative{
+  position: absolute;
+  width: 253px;
+  height: 14px;
+  left: calc(50% - 253px/2 + 0.5px);
+  top: 406px;
+
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 14px;
+  text-align: center;
+  color: #FF0000;
+
 }
